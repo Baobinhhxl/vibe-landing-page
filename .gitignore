@@ -1,0 +1,10 @@
+.env
+.tmp/
+credentials.json
+token.json
+__pycache__/
+.ipynb_checkpoints/
+node_modules/
+dist/
+build/
+.next/
