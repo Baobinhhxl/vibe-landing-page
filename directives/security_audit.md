@@ -312,6 +312,10 @@
         executed on the server. Check that upload directories are not
         in the web root's executable path.
 
+  ## Section 9: Build Artifact Exposure
+  - [ ] 9.1 — Build configuration: Check next.config.js for productionBrowserSourceMaps: true. Source maps in production allow anyone to see your original source code.
+  - [ ] 9.2 — .map files in build output: Check the .next/ or dist/ folders for .map files. If they exist, they are likely being served and exposing source code.
+
   </audit_checklist>
 
   <final_report>
