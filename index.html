@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hướng Dẫn Chọn Thiết Bị Điện Hạ Áp — IDEMY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Design Tokens ─────────────────────────────── */
+    :root {
+      --bg:        #fefdfb;
+      --bg-warm:   #f7f4ef;
+      --bg-dark:   #0d1f3c;
+      --navy:      #0d1f3c;
+      --navy-mid:  #132b52;
+      --blue:      #1654a8;
+      --blue-light:#2a6fd4;
+      --amber:     #f59e0b;
+      --amber-dark:#d97706;
+      --text:      #1a1a2e;
+      --text-muted:#6b7280;
+      --border:    #e5e0d8;
+      --white:     #ffffff;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Be Vietnam Pro', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+      --shadow-sm:  0 2px 8px rgba(0,0,0,.08);
+      --shadow-md:  0 8px 32px rgba(0,0,0,.12);
+      --shadow-lg:  0 20px 60px rgba(0,0,0,.18);
+    }
+
+    /* ─── Reset ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Utility ────────────────────────────────────── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 500;
+    }
+    .divider {
+      width: 48px; height: 3px;
+      background: var(--amber);
+      border-radius: 2px;
+      margin: 16px 0 32px;
+    }
+
+    /* ─── Animations ─────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatBook {
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50%       { transform: translateY(-12px) rotate(-3deg); }
+    }
+    @keyframes floatBookFront {
+      0%, 100% { transform: translateY(0px) rotate(4deg); }
+      50%       { transform: translateY(-8px) rotate(4deg); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes pulse-ring {
+      0%   { transform: scale(1); opacity: .6; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .fade-up { animation: fadeUp .7s ease both; }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .22s; }
+    .delay-3 { animation-delay: .34s; }
+    .delay-4 { animation-delay: .46s; }
+
+    /* ─── Navbar ─────────────────────────────────────── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(254,253,251,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .navbar-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .navbar-logo img {
+      height: 40px; width: auto; border-radius: var(--radius-sm);
+    }
+    .navbar-tagline {
+      font-size: .75rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      max-width: 220px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      border: none; cursor: pointer;
+      transition: all .2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--navy);
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-size: .9rem;
+    }
+    .btn-primary:hover {
+      background: var(--amber-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(245,158,11,.35);
+    }
+    .btn-large {
+      padding: 16px 36px;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+    }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 64px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(22,84,168,.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,158,11,.12);
+      border: 1px solid rgba(245,158,11,.3);
+      color: var(--amber-dark);
+      font-size: .8rem; font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      background: var(--amber);
+      border-radius: 50%;
+      position: relative;
+    }
+    .hero-badge-dot::after {
+      content: '';
+      position: absolute; inset: -4px;
+      background: var(--amber);
+      border-radius: 50%;
+      animation: pulse-ring 1.5s ease-out infinite;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--blue);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero-cta-group {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .hero-social-proof {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .stars { color: var(--amber); font-size: 1rem; letter-spacing: 2px; }
+    .proof-text { font-size: .85rem; color: var(--text-muted); }
+    .proof-text strong { color: var(--text); font-weight: 600; }
+    .hero-counter {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 24px;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-top: 8px;
+    }
+    .counter-icon { font-size: 1.8rem; }
+    .counter-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .counter-label { font-size: .8rem; color: var(--text-muted); }
+
+    /* ─── Book Visual ────────────────────────────────── */
+    .book-visual {
+      position: relative;
+      height: 380px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .book-wrap {
+      position: relative;
+      width: 260px; height: 340px;
+    }
+    /* Back book (tilted left) */
+    .lb-back {
+      position: absolute;
+      width: 200px; height: 290px;
+      left: 0; bottom: 10px;
+      border-radius: 3px 10px 10px 3px;
+      background: linear-gradient(135deg, #1a5fb4 0%, #0e3a7a 100%);
+      box-shadow: -6px 6px 24px rgba(0,0,0,.35), inset -3px 0 6px rgba(0,0,0,.2);
+      animation: floatBook 5s ease-in-out infinite;
+      transform: rotate(-3deg);
+      overflow: hidden;
+    }
+    .lb-back-spine {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 16px;
+      background: linear-gradient(to right, #0a2d5c, #1a5fb4);
+    }
+    .lb-back-content {
+      position: absolute;
+      left: 20px; right: 8px; top: 16px; bottom: 16px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .lb-back-logo {
+      width: 48px; height: 24px;
+      background: rgba(255,255,255,.9);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .55rem; font-weight: 700; color: var(--navy);
+      font-family: var(--font-body);
+      letter-spacing: .05em;
+    }
+    .lb-back-title {
+      font-family: var(--font-display);
+      font-size: .75rem;
+      color: rgba(255,255,255,.9);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+    .lb-back-device {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .lb-back-chip {
+      font-family: var(--font-mono);
+      font-size: .55rem;
+      color: rgba(255,255,255,.7);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* Front book (upright, slightly right) */
+    .lb-front {
+      position: absolute;
+      width: 200px; height: 290px;
+      right: 0; bottom: 0;
+      border-radius: 3px 10px 10px 3px;
+      background: linear-gradient(135deg, #1a5fb4 0%, #0e3a7a 100%);
+      box-shadow: 8px 12px 40px rgba(0,0,0,.35), inset -3px 0 6px rgba(0,0,0,.2);
+      animation: floatBookFront 5s ease-in-out infinite .8s;
+      transform: rotate(4deg);
+      overflow: hidden;
+    }
+    .lb-front-spine {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 16px;
+      background: linear-gradient(to right, #0a2d5c, #1a5fb4);
+    }
+    .lb-front-content {
+      position: absolute;
+      left: 20px; right: 8px; top: 12px; bottom: 12px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .lb-front-logo {
+      width: 48px; height: 24px;
+      background: rgba(255,255,255,.9);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .55rem; font-weight: 700; color: var(--navy);
+      font-family: var(--font-body);
+      letter-spacing: .05em;
+    }
+    .lb-front-title {
+      font-family: var(--font-display);
+      font-size: .85rem;
+      color: rgba(255,255,255,.95);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+    .lb-front-chart {
+      width: 100%;
+      height: 70px;
+      position: relative;
+    }
+    .lb-front-chart svg { width: 100%; height: 100%; }
+
+    /* ─── Section: Học được gì ───────────────────────── */
+    .section-learn {
+      padding: 96px 0;
+      background: var(--bg-warm);
+    }
+    .learn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .learn-header { margin-bottom: 40px; }
+    .learn-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+    .learn-items { display: flex; flex-direction: column; gap: 28px; }
+    .learn-item {
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .learn-num {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .learn-text h3 {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .learn-text p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    /* Right column: two stacked books visual */
+    .learn-visual {
+      position: relative;
+      height: 360px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stacked-books {
+      position: relative;
+      width: 220px; height: 300px;
+    }
+    .sb-bottom {
+      position: absolute;
+      bottom: 0; left: 20px;
+      width: 200px; height: 270px;
+      background: linear-gradient(135deg, #1a5fb4, #0e3a7a);
+      border-radius: 3px 8px 8px 3px;
+      box-shadow: 6px 10px 30px rgba(0,0,0,.25);
+      transform: rotate(-2deg);
+      overflow: hidden;
+    }
+    .sb-bottom::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 14px;
+      background: linear-gradient(to right, #0a2d5c, #1a5fb4);
+    }
+    .sb-bottom-label {
+      position: absolute; bottom: 20px; left: 24px; right: 12px;
+      font-family: var(--font-display);
+      font-size: .7rem;
+      color: rgba(255,255,255,.7);
+      font-weight: 600;
+    }
+    .sb-top {
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 270px;
+      background: linear-gradient(135deg, #1654a8, #0c3a82);
+      border-radius: 3px 8px 8px 3px;
+      box-shadow: 8px 12px 36px rgba(0,0,0,.3);
+      transform: rotate(2deg);
+      overflow: hidden;
+    }
+    .sb-top::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 14px;
+      background: linear-gradient(to right, #081e42, #1654a8);
+    }
+    .sb-top-content {
+      position: absolute;
+      left: 22px; right: 10px; top: 16px; bottom: 16px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .sb-top-logo {
+      width: 44px; height: 22px;
+      background: rgba(255,255,255,.9);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .5rem; font-weight: 700; color: var(--navy);
+      font-family: var(--font-body);
+    }
+    .sb-top-title {
+      font-family: var(--font-display);
+      font-size: .8rem;
+      color: rgba(255,255,255,.95);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .sb-top-chips {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .sb-chip {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .6rem;
+      color: rgba(255,255,255,.75);
+    }
+    .sb-chip::before {
+      content: '✓';
+      color: var(--amber);
+      font-size: .65rem;
+    }
+
+    /* ─── Section: Nội dung chương ───────────────────── */
+    .section-chapters {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+    .chapters-header { margin-bottom: 48px; }
+    .chapters-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .chapter-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px 28px 24px;
+      background: var(--white);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .chapter-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .chapter-label {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: var(--blue);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .chapter-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .chapter-desc {
+      font-size: .85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .chapter-topics {
+      margin-top: 16px;
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .topic-tag {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      background: var(--bg-warm);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 100px;
+    }
+
+    /* ─── Section: Tính năng ─────────────────────────── */
+    .section-features {
+      padding: 96px 0;
+      background: var(--bg-warm);
+    }
+    .features-header { margin-bottom: 48px; }
+    .features-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      border: 1.5px solid var(--border);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── Section: Dành cho ai ───────────────────────── */
+    .section-audience {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+    .audience-header { margin-bottom: 48px; }
+    .audience-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .audience-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px 22px;
+      background: var(--white);
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color .2s, transform .2s;
+    }
+    .audience-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .audience-emoji { font-size: 1.6rem; flex-shrink: 0; }
+    .audience-info h4 {
+      font-weight: 600; font-size: .95rem;
+      color: var(--navy); margin-bottom: 5px;
+    }
+    .audience-info p { font-size: .82rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ─── Section: Pain Points ───────────────────────── */
+    .section-pain {
+      padding: 96px 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .section-pain::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(22,84,168,.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pain-header { margin-bottom: 48px; }
+    .pain-header .section-label { color: var(--amber); }
+    .pain-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pain-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: background .2s, transform .2s;
+    }
+    .pain-card:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-3px);
+    }
+    .pain-icon { font-size: 2rem; margin-bottom: 16px; }
+    .pain-card h3 {
+      font-weight: 600; font-size: 1rem;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .pain-card p { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+
+    /* ─── Section: Form ──────────────────────────────── */
+    .section-form {
+      padding: 100px 0;
+      background: var(--bg-warm);
+    }
+    .form-wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .form-wrapper .section-label { margin-bottom: 8px; display: block; }
+    .form-wrapper h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .form-wrapper p.form-sub {
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+    .form-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      box-shadow: var(--shadow-md);
+      text-align: left;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(22,84,168,.1);
+    }
+    .form-group input::placeholder { color: #9ca3af; }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--amber);
+      color: var(--navy);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 8px;
+    }
+    .form-submit:hover:not(:disabled) {
+      background: var(--amber-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245,158,11,.35);
+    }
+    .form-submit:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+    .form-privacy {
+      text-align: center;
+      margin-top: 16px;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .form-success.show { display: block; }
+    .form-success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .form-success p { font-size: .9rem; color: var(--text-muted); }
+
+    /* Field error */
+    .field-error {
+      display: none;
+      font-size: .78rem;
+      color: #dc2626;
+      margin-top: 6px;
+    }
+    .form-group.has-error input {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220,38,38,.1);
+    }
+    .form-group.has-error .field-error { display: block; }
+    .form-group.is-valid input {
+      border-color: #16a34a;
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(13,31,60,.3);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading .spinner { display: block; }
+    .loading .btn-text { display: none; }
+
+    /* ─── Section: About ─────────────────────────────── */
+    .section-about {
+      padding: 80px 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .about-logo img {
+      height: 72px; width: auto;
+      border-radius: var(--radius-sm);
+    }
+    .about-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .about-text p {
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .82rem;
+    }
+    footer strong { color: rgba(255,255,255,.8); }
+
+    /* ─── Scroll animation (JS-driven) ──────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .book-visual { order: -1; height: 280px; }
+      .book-wrap { width: 200px; height: 260px; }
+      .lb-back, .lb-front { width: 160px; height: 220px; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .learn-visual { order: -1; height: 280px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr 1fr; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; text-align: center; }
+      .about-logo { display: flex; justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .navbar-tagline { display: none; }
+      .chapters-grid { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .hero { padding: 56px 0 48px; }
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <div class="navbar-logo">
+        <img src="picture/logo_IDEMY.jpg" alt="IDEMY">
+        <span class="navbar-tagline">Sách kỹ thuật ngắn gọn<br>dành cho người làm nghề</span>
+      </div>
+      <a href="#form" class="btn btn-primary">Đăng ký ngay</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge fade-up">
+          <span class="hero-badge-dot"></span>
+          Sắp ra mắt — Đăng ký để nhận thông báo đầu tiên
+        </div>
+        <h1 class="fade-up delay-1">
+          <em>Hướng dẫn</em> chọn<br>
+          thiết bị điện hạ áp
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          Chọn đúng dây dẫn, CB, RCCB và chống sét — không cần tính toán phức tạp.
+          Tra cứu nhanh, áp dụng ngay tại công trình.
+        </p>
+        <div class="hero-cta-group fade-up delay-3">
+          <a href="#form" class="btn btn-primary btn-large">
+            Đăng ký danh sách chờ →
+          </a>
+          <div class="hero-social-proof">
+            <span class="stars">★★★★★</span>
+            <span class="proof-text"><strong>Giá ưu đãi</strong> dành cho<br>người đăng ký sớm</span>
+          </div>
+        </div>
+        <div class="hero-counter fade-up delay-4">
+          <span class="counter-icon">👥</span>
+          <div>
+            <div class="counter-num">147+</div>
+            <div class="counter-label">kỹ sư & kỹ thuật viên đã đăng ký</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book visual -->
+      <div class="book-visual fade-up delay-2">
+        <div class="book-wrap">
+          <!-- Back book -->
+          <div class="lb-back">
+            <div class="lb-back-spine"></div>
+            <div class="lb-back-content">
+              <div class="lb-back-logo">IDEMY</div>
+              <div class="lb-back-title">Hướng dẫn<br>chọn thiết bị<br>điện hạ áp</div>
+              <div class="lb-back-device">
+                <span class="lb-back-chip">CB</span>
+                <span class="lb-back-chip">RCCB</span>
+                <span class="lb-back-chip">Dây dẫn</span>
+                <span class="lb-back-chip">Chống sét</span>
+              </div>
+            </div>
+          </div>
+          <!-- Front book -->
+          <div class="lb-front">
+            <div class="lb-front-spine"></div>
+            <div class="lb-front-content">
+              <div class="lb-front-logo">IDEMY</div>
+              <div class="lb-front-title">Hướng dẫn<br>chọn thiết bị<br>điện hạ áp</div>
+              <div class="lb-front-chart">
+                <svg viewBox="0 0 160 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Trip curve chart -->
+                  <rect width="160" height="65" fill="rgba(0,0,0,.2)" rx="4"/>
+                  <!-- Axes -->
+                  <line x1="18" y1="8" x2="18" y2="56" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+                  <line x1="18" y1="56" x2="150" y2="56" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+                  <!-- Curves -->
+                  <path d="M18 10 Q40 20 55 40 Q65 50 80 54" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+                  <path d="M18 15 Q45 25 62 42 Q72 51 90 55" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none"/>
+                  <path d="M18 22 Q50 30 70 44 Q80 52 100 55" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none"/>
+                  <!-- Labels -->
+                  <text x="22" y="22" fill="rgba(255,255,255,.8)" font-size="7" font-family="monospace">Z</text>
+                  <text x="22" y="32" fill="rgba(255,255,255,.8)" font-size="7" font-family="monospace">B</text>
+                  <text x="22" y="44" fill="rgba(255,255,255,.8)" font-size="7" font-family="monospace">C</text>
+                  <text x="70" y="14" fill="rgba(255,255,255,.6)" font-size="7" font-family="monospace">Đường đặc tính</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HỌC ĐƯỢC GÌ ═══════════════════════════════════ -->
+  <section class="section-learn">
+    <div class="container learn-grid">
+      <div>
+        <div class="learn-header reveal">
+          <span class="section-label">Nội dung</span>
+          <div class="divider"></div>
+          <h2>Bạn sẽ làm được gì<br>sau khi đọc xong?</h2>
+        </div>
+        <div class="learn-items">
+          <div class="learn-item reveal">
+            <div class="learn-num">1</div>
+            <div class="learn-text">
+              <h3>Chọn đúng tiết diện dây dẫn</h3>
+              <p>Biết cách tra bảng, tính dòng điện tải và chọn tiết diện phù hợp theo tiêu chuẩn IEC — không cần công thức phức tạp.</p>
+            </div>
+          </div>
+          <div class="learn-item reveal">
+            <div class="learn-num">2</div>
+            <div class="learn-text">
+              <h3>Chọn CB/Aptomat chính xác</h3>
+              <p>Hiểu đường đặc tính Z/B/C/D, biết chỉnh dòng cắt ngắn mạch, phối hợp bảo vệ đúng kỹ thuật.</p>
+            </div>
+          </div>
+          <div class="learn-item reveal">
+            <div class="learn-num">3</div>
+            <div class="learn-text">
+              <h3>Lắp RCCB đúng loại đúng chỗ</h3>
+              <p>Phân biệt RCCB loại AC/A/B, chọn đúng dòng rò 30mA/100mA/300mA theo từng ứng dụng.</p>
+            </div>
+          </div>
+          <div class="learn-item reveal">
+            <div class="learn-num">4</div>
+            <div class="learn-text">
+              <h3>Thiết kế chống sét lan truyền</h3>
+              <p>Hiểu nguyên lý SPD, chọn cấp bảo vệ T1/T2/T3 và vị trí lắp đặt đúng trong sơ đồ điện.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked books visual -->
+      <div class="learn-visual reveal">
+        <div class="stacked-books">
+          <div class="sb-bottom">
+            <div class="sb-bottom-label">IDEMY — Sách kỹ thuật</div>
+          </div>
+          <div class="sb-top">
+            <div class="sb-top-content">
+              <div class="sb-top-logo">IDEMY</div>
+              <div class="sb-top-title">Hướng dẫn<br>chọn thiết bị<br>điện hạ áp</div>
+              <div class="sb-top-chips">
+                <div class="sb-chip">Chọn dây dẫn đúng tiết diện</div>
+                <div class="sb-chip">CB/RCCB — chọn đúng loại</div>
+                <div class="sb-chip">Chống sét lan truyền</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NỘI DUNG CHƯƠNG ════════════════════════════════ -->
+  <section class="section-chapters">
+    <div class="container">
+      <div class="chapters-header reveal">
+        <span class="section-label">Nội dung sách</span>
+        <div class="divider"></div>
+        <h2>5 chương — từ lý thuyết đến thực tế</h2>
+      </div>
+      <div class="chapters-grid">
+        <div class="chapter-card reveal">
+          <div class="chapter-label">Chương I</div>
+          <div class="chapter-title">Tổng quan hệ thống điện hạ áp</div>
+          <p class="chapter-desc">Sơ đồ 1 sợi, cấp điện áp, phân loại tủ điện và nguyên tắc nền tảng cần biết trước khi chọn thiết bị.</p>
+          <div class="chapter-topics">
+            <span class="topic-tag">230V / 400V</span>
+            <span class="topic-tag">TN-S / TN-C</span>
+            <span class="topic-tag">Sơ đồ 1 sợi</span>
+          </div>
+        </div>
+        <div class="chapter-card reveal">
+          <div class="chapter-label">Chương II</div>
+          <div class="chapter-title">Dây & Cáp điện — Chọn đúng tiết diện</div>
+          <p class="chapter-desc">Bảng tra dòng điện cho phép, cách tính dòng tải thực tế, hệ số hiệu chỉnh theo nhiệt độ và cách đặt dây.</p>
+          <div class="chapter-topics">
+            <span class="topic-tag">Cu / Al</span>
+            <span class="topic-tag">IEC 60364</span>
+            <span class="topic-tag">Bảng tra IZ</span>
+          </div>
+        </div>
+        <div class="chapter-card reveal">
+          <div class="chapter-label">Chương III</div>
+          <div class="chapter-title">CB/Aptomat — Đặc tính & Cách chọn</div>
+          <p class="chapter-desc">Đường đặc tính Z/B/C/D, dòng cắt ngắn mạch, phối hợp chọn lọc giữa CB tổng và CB nhánh.</p>
+          <div class="chapter-topics">
+            <span class="topic-tag">MCB / MCCB</span>
+            <span class="topic-tag">Icn / Icu</span>
+            <span class="topic-tag">Phối hợp bảo vệ</span>
+          </div>
+        </div>
+        <div class="chapter-card reveal">
+          <div class="chapter-label">Chương IV</div>
+          <div class="chapter-title">RCCB — Bảo vệ dòng rò & Chống giật</div>
+          <p class="chapter-desc">Phân biệt RCCB loại AC, A, B và F. Chọn đúng dòng rò 30mA / 100mA / 300mA theo từng ứng dụng thực tế.</p>
+          <div class="chapter-topics">
+            <span class="topic-tag">30mA / 300mA</span>
+            <span class="topic-tag">Loại A / AC</span>
+            <span class="topic-tag">IEC 61008</span>
+          </div>
+        </div>
+        <div class="chapter-card reveal">
+          <div class="chapter-label">Chương V</div>
+          <div class="chapter-title">SPD — Chống sét lan truyền</div>
+          <p class="chapter-desc">Nguyên lý hoạt động, cấp bảo vệ T1/T2/T3, cách chọn và lắp đúng vị trí trong sơ đồ điện của công trình.</p>
+          <div class="chapter-topics">
+            <span class="topic-tag">T1 / T2 / T3</span>
+            <span class="topic-tag">Up / In</span>
+            <span class="topic-tag">IEC 61643</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TÍNH NĂNG ══════════════════════════════════════ -->
+  <section class="section-features">
+    <div class="container">
+      <div class="features-header reveal">
+        <span class="section-label">Điểm nổi bật</span>
+        <div class="divider"></div>
+        <h2>Không phải giáo trình —<br>mà là công cụ làm việc</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">⚡</div>
+          <h3>Tra cứu nhanh, dùng ngay</h3>
+          <p>Mỗi chủ đề được trình bày theo dạng tra cứu — bảng số liệu, sơ đồ quyết định, ví dụ tính toán hoàn chỉnh để áp dụng tức thì tại công trình.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📐</div>
+          <h3>Ví dụ thực tế, có số liệu</h3>
+          <p>Không dừng ở lý thuyết. Mỗi phần có bài toán thực tế: tải cụ thể, tra bảng từng bước, đưa ra kết quả chọn thiết bị rõ ràng.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">💻</div>
+          <h3>Hướng dẫn mô phỏng phần mềm</h3>
+          <p>Kèm hướng dẫn kiểm tra lại bằng phần mềm chuyên nghiệp, giúp bạn tự tin trước khi ký duyệt hồ sơ thiết kế.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DÀNH CHO AI ════════════════════════════════════ -->
+  <section class="section-audience">
+    <div class="container">
+      <div class="audience-header reveal">
+        <span class="section-label">Đối tượng</span>
+        <div class="divider"></div>
+        <h2>Cuốn sách này dành cho ai?</h2>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <span class="audience-emoji">👷</span>
+          <div class="audience-info">
+            <h4>Kỹ sư điện</h4>
+            <p>Cần tài liệu tra cứu nhanh trong quá trình thiết kế và thi công.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <span class="audience-emoji">🔧</span>
+          <div class="audience-info">
+            <h4>Kỹ thuật viên điện</h4>
+            <p>Muốn hiểu sâu hơn về nguyên lý để chọn thiết bị chính xác.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <span class="audience-emoji">🏗️</span>
+          <div class="audience-info">
+            <h4>Chủ thầu xây dựng</h4>
+            <p>Cần kiểm soát chất lượng vật tư điện mà không phụ thuộc hoàn toàn vào nhà thầu phụ.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <span class="audience-emoji">🎓</span>
+          <div class="audience-info">
+            <h4>Sinh viên kỹ thuật điện</h4>
+            <p>Muốn bổ sung kiến thức thực tế trước khi ra trường, đi thực tập hoặc đi làm.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <span class="audience-emoji">🛠️</span>
+          <div class="audience-info">
+            <h4>Nhân viên bảo trì điện</h4>
+            <p>Cần hiểu cơ sở để bảo trì, sửa chữa và thay thế thiết bị đúng thông số.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <span class="audience-emoji">📋</span>
+          <div class="audience-info">
+            <h4>Kỹ sư thiết kế MEP</h4>
+            <p>Làm việc với hệ thống M&E, cần tài liệu tham khảo thực chiến để ra quyết định nhanh.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PAIN POINTS ════════════════════════════════════ -->
+  <section class="section-pain">
+    <div class="container">
+      <div class="pain-header reveal">
+        <span class="section-label">Vấn đề thường gặp</span>
+        <div class="divider" style="background:var(--amber)"></div>
+        <h2>Những tình huống quen thuộc<br>mà bạn chắc chắn đã gặp</h2>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card reveal">
+          <div class="pain-icon">😕</div>
+          <h3>Không biết chọn CB bao nhiêu A cho tải nào?</h3>
+          <p>Chọn theo cảm tính hoặc hỏi nhà cung cấp — không chắc đúng, không biết giải thích cho chủ đầu tư.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-icon">🤯</div>
+          <h3>Lẫn lộn giữa RCCB và CB thường?</h3>
+          <p>Không rõ khi nào cần RCCB, dòng rò bao nhiêu, loại AC hay A — dẫn đến lắp sai hoặc lắp thừa.</p>
+        </div>
+        <div class="pain-card reveal">
+          <div class="pain-icon">📚</div>
+          <h3>Tài liệu kỹ thuật quá dày, khó dùng?</h3>
+          <p>Tiêu chuẩn IEC dài hàng trăm trang, không biết tra chỗ nào — mất thời gian mà vẫn không ra đáp án.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FORM ════════════════════════════════════════════ -->
+  <section class="section-form" id="form">
+    <div class="container">
+      <div class="form-wrapper">
+        <span class="section-label reveal">Đăng ký danh sách chờ</span>
+        <h2 class="reveal">Nhận thông báo đầu tiên<br>khi sách ra mắt</h2>
+        <p class="form-sub reveal">Đăng ký ngay hôm nay để nhận giá ưu đãi và được thông báo sớm nhất khi sách phát hành.</p>
+
+        <div class="form-card reveal">
+          <form id="waitlist-form" autocomplete="off">
+            <!-- Honeypot: ẩn với người dùng, bot sẽ điền vào và bị reject -->
+            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+              <input type="text" name="website" id="hp-website" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-group" id="group-name">
+              <label for="name">Họ và tên</label>
+              <input type="text" id="name" name="name" placeholder="Nguyễn Văn A" required autocomplete="name">
+              <span class="field-error" id="err-name">Vui lòng nhập họ tên của bạn.</span>
+            </div>
+            <div class="form-group" id="group-email">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="example@email.com" required autocomplete="email">
+              <span class="field-error" id="err-email">Email không hợp lệ. Ví dụ: ten@gmail.com</span>
+            </div>
+            <div class="form-group" id="group-phone">
+              <label for="phone">Số điện thoại</label>
+              <input type="tel" id="phone" name="phone" placeholder="0912 345 678" autocomplete="tel">
+              <span class="field-error" id="err-phone">Số điện thoại không hợp lệ. Nhập 10 chữ số, bắt đầu bằng 0.</span>
+            </div>
+            <button type="submit" class="form-submit" id="submit-btn">
+              <span class="btn-text">Đăng ký ngay — Nhận giá ưu đãi</span>
+              <span class="spinner"></span>
+            </button>
+            <p class="form-privacy">🔒 Thông tin của bạn được bảo mật. Không spam.</p>
+          </form>
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">🎉</div>
+            <h3>Đăng ký thành công!</h3>
+            <p>Cảm ơn bạn đã quan tâm. Chúng tôi sẽ thông báo ngay khi sách ra mắt — kèm giá ưu đãi dành riêng cho bạn.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ════════════════════════════════════════════ -->
+  <section class="section-about">
+    <div class="container about-inner">
+      <div class="about-logo">
+        <img src="picture/logo_IDEMY.jpg" alt="IDEMY">
+      </div>
+      <div class="about-text reveal">
+        <h3>Về IDEMY</h3>
+        <p>IDEMY xuất bản những cuốn sách kỹ thuật ngắn gọn, thực dụng — viết cho người đang làm việc thực tế, không phải cho sinh viên đọc để thi. Mỗi cuốn sách là một công cụ tra cứu và ra quyết định, không phải tài liệu học thuật.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <p>© 2025 <strong>IDEMY</strong>. Sách kỹ thuật ngắn gọn dành cho người làm nghề.</p>
+    </div>
+  </footer>
+
+  <!-- ═══ JAVASCRIPT ═══════════════════════════════════════ -->
+  <script>
+    // ── Config ──────────────────────────────────────────────
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbyJk-8Gj195GURCsjfg0oyPZB-5ShubjupTyJyhubJNFauxNClUyYKZs3116Qb6SMMP/exec';
+    const TOKEN    = 'idm-wl-Kx9#mP2025';
+
+    // ── Scroll reveal ────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Form validation helpers ──────────────────────────────
+    function setFieldState(groupId, valid) {
+      const group = document.getElementById(groupId);
+      group.classList.toggle('has-error', !valid);
+      group.classList.toggle('is-valid',  valid);
+    }
+
+    function validateEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    }
+
+    function validatePhone(v) {
+      // Cho phép số Việt Nam: 10 chữ số, bắt đầu 0, có thể có dấu cách/gạch ngang
+      const digits = v.replace(/[\s\-\.]/g, '');
+      return /^0\d{9}$/.test(digits);
+    }
+
+    // Xóa lỗi khi người dùng bắt đầu sửa
+    ['name', 'email', 'phone'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        const group = document.getElementById('group-' + id);
+        group.classList.remove('has-error', 'is-valid');
+      });
+    });
+
+    // ── Form submission ──────────────────────────────────────
+    const form      = document.getElementById('waitlist-form');
+    const btn       = document.getElementById('submit-btn');
+    const successEl = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name  = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      // Validate từng field
+      const nameOk  = name.length >= 2;
+      const emailOk = validateEmail(email);
+      const phoneOk = phone === '' || validatePhone(phone); // SĐT không bắt buộc
+
+      setFieldState('group-name',  nameOk);
+      setFieldState('group-email', emailOk);
+      if (phone !== '') setFieldState('group-phone', phoneOk);
+
+      if (!nameOk || !emailOk || !phoneOk) return;
+
+      // Honeypot check — bot điền field ẩn → reject ngay
+      if (document.getElementById('hp-website').value !== '') return;
+
+      // Loading state
+      btn.disabled = true;
+      btn.classList.add('loading');
+
+      const body = new URLSearchParams({ name, email, phone, token: TOKEN }).toString();
+
+      try {
+        if (ENDPOINT === 'YOUR_APPS_SCRIPT_URL_HERE') {
+          // Demo mode
+          await new Promise(r => setTimeout(r, 900));
+        } else {
+          await fetch(ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body
+          });
+        }
+        // Show success
+        form.style.display = 'none';
+        successEl.classList.add('show');
+      } catch {
+        btn.disabled = false;
+        btn.classList.remove('loading');
+        alert('Có lỗi xảy ra. Vui lòng thử lại!');
+      }
+    });
+  </script>
+</body>
+</html>
